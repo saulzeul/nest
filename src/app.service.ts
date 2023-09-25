@@ -1,20 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { InjectDataSource } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
+import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { env_secondary_db } from './constants/database.const';
 import { LocalFileService } from './models/file_management/local-file.service';
 import { MailService } from './mail/mail.service';
+import { User } from './models/users/exclude-entity/users.exclude-entity';
+import { User as UserNotExcluded } from './models/users/users.entity';
 
 @Injectable()
 export class AppService {
   constructor(
-    @InjectDataSource(env_secondary_db.name)
-    private connection: DataSource,
     private readonly mailService: MailService,
-    private readonly localFileService: LocalFileService
   ) {}
   async getHello(): Promise<any> {
-    const query = await this.connection.query('SELECT * FROM users');
+/*     const query = await this.connection.query('SELECT * FROM users'); */
 
 /*     const params:mailParams = {
       to: ['saul.espinoza@martinrea.com'],
@@ -24,10 +23,6 @@ export class AppService {
       subject: 'Prueba'
     }
     await this.mailService.sendMail(params) */
-    return query;
-  }
-
-  async uploadFile(file_data: localFileInterface) {
-    await this.localFileService.saveMetadataFile(file_data)
+    return true;
   }
 }

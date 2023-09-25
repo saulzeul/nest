@@ -16,7 +16,7 @@ export const secondary_db = [
                 password: password,
                 port: port,
                 database: name,
-                entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+                entities: [__dirname + '/../../**/*.exclude-entity{.ts,.js}'],
                 options: {
                     enableArithAbort: true,
                     encrypt: false,

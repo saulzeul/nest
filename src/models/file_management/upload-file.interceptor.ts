@@ -6,7 +6,6 @@ import { diskStorage } from "multer";
 import { api_config } from "../../constants/api.config.const";
 
 interface UploadFilesInterceptorOptions {
-    fieldName: string;
     path?: string;
 }
 
@@ -16,13 +15,15 @@ function UploadFilesInterceptor( options: UploadFilesInterceptorOptions): Type<N
         fileInterceptor: NestInterceptor;
         constructor() {
             const destination = `${api_config.storage}${options.path}`
-
             const multerOptions: MulterOptions = {
                 storage: diskStorage({
-                    destination
+                    destination,
+                    filename: (req, file, callback) => {
+                        callback(null, `${file.originalname}`)
+                    }
                 })
             }
-            this.fileInterceptor = new (FileInterceptor(options.fieldName, multerOptions))
+            this.fileInterceptor = new (FileInterceptor(`${multerOptions.storage}`, multerOptions))
         }
         intercept(...args: Parameters<NestInterceptor['intercept']>) {
             return this.fileInterceptor.intercept(...args);

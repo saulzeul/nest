@@ -8,6 +8,9 @@ export class User extends BaseEntity {
     @Column({ nullable: false })
     fullname: string;
 
-    @Column({ nullable: false })
+    @Column()
     status: boolean;
+
+    @CreateDateColumn()
+    created_at: Date;
 }

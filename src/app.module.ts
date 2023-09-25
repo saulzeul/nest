@@ -8,6 +8,10 @@ import { MailModule } from './mail/mail.module';
 import { LocalFileService } from './models/file_management/local-file.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LocalFile } from './models/file_management/local-file.entity';
+import { User } from './models/users/users.entity';
+import { ItemsModule } from './models/items/items.module';
+import { QueryModule } from './models/query/query.module';
+import { UploadFileModule } from './models/file_management/upload-file.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -19,9 +23,11 @@ const ENV = process.env.NODE_ENV;
     }),
     DatabaseModule,
     MailModule,
-    TypeOrmModule.forFeature([LocalFile])
+    ItemsModule,
+    QueryModule,
+    UploadFileModule
   ],
   controllers: [AppController],
-  providers: [AppService, MailService, LocalFileService],
+  providers: [AppService, MailService],
 })
 export class AppModule {}
