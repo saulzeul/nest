@@ -3,7 +3,7 @@ import { mixin } from "@nestjs/common/decorators";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { MulterOptions } from "@nestjs/platform-express/multer/interfaces/multer-options.interface";
 import { diskStorage } from "multer";
-import { api_config } from "../../constants/api.config.const";
+import { api_config } from "../../../constants/api.config.const";
 
 interface UploadFilesInterceptorOptions {
     path?: string;

@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 import { MailerModule } from "@nestjs-modules/mailer";
 import { PugAdapter } from "@nestjs-modules/mailer/dist/adapters/pug.adapter";
-import { mail_config } from "../constants/mail.const";
-import { MailService } from "./mail.service";
+import { mail_config } from "../../constants/mail.const";
+import { MailController, mailService, } from './index';
 const { service, host, port, user, password, sender } = mail_config;
 
 @Module({
@@ -28,7 +28,6 @@ const { service, host, port, user, password, sender } = mail_config;
                     },
                     template: {
                         adapter: new PugAdapter(),
-                        dir: process.cwd() + '/templates/',
                         options: {
                             strict: true
                         }
@@ -37,6 +36,7 @@ const { service, host, port, user, password, sender } = mail_config;
             }
         })
     ],
-    providers: [MailService]
+    providers: [mailService],
+    controllers: [MailController]
 })
 export class MailModule { }

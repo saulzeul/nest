@@ -1,13 +1,10 @@
-import { Controller, Delete, Get, Param, ParseIntPipe, Post, Req, Res, StreamableFile, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Controller, Delete, Get, Param, ParseIntPipe, Post,Res, StreamableFile, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { Response } from "express";
 import { createReadStream } from "fs";
 import { join } from "path";
-import { LocalFileService } from "./local-file.service";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { multerConfig } from "./multer-options";
-import { MaxSizesInMbEnum } from "./enums/max-sizes.enum";
-import { MimetypesEnum } from "./enums/mimetypes.enum";
+import { LocalFileService, multerConfig, MaxSizesInMbEnum, MimetypesEnum} from './index';
 
 @Controller('local-files')
 @ApiTags('Local Files')

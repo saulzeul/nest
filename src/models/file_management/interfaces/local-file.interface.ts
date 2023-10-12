@@ -1,4 +1,4 @@
-interface localFileInterface {
+export interface localFileInterface {
     filename: string;
     originalname: string;
     path: string;

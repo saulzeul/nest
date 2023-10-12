@@ -1,4 +1,5 @@
-interface mailParams {
+import { fileParams } from '../../file_management/index'
+export interface mailParams {
     to: string[],
     cc: string[],
     subject: string,
